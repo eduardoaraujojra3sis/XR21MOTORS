@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>XR21MOTORS — Viaturas selecionadas, financiamento e retomas | AutoVitrine</title>
+<meta name="description" content="Montra digital XR21MOTORS: viaturas selecionadas, financiamento personalizado, retomas e entrega em Portugal Continental. Conceito demonstrativo KRONUS." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="XR21MOTORS — A sua próxima viatura começa aqui" />
+<meta property="og:description" content="Viaturas selecionadas, financiamento personalizado e acompanhamento em todas as etapas da compra." />
+<meta property="og:locale" content="pt_PT" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  html{-webkit-text-size-adjust:100%}
+  html,body{margin:0;padding:0;background:#090A0C;-webkit-font-smoothing:antialiased;text-wrap:pretty;overflow-wrap:break-word}
+  img{max-width:100%}
+  *{box-sizing:border-box}
+  button{font-family:'DM Sans',sans-serif}
+  a{color:#C2A47C;text-decoration:none}
+  a:hover{color:#DCC49B}
+  input,select,textarea{font-family:'DM Sans',sans-serif}
+  ::selection{background:#C2A47C;color:#0B0C0E}
+  :focus-visible{outline:2px solid #C2A47C;outline-offset:3px}
+  @keyframes avUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+  @keyframes avPulse{0%,100%{opacity:.45}50%{opacity:.9}}
+  @keyframes avIntroZoom{from{transform:scale(1.12)}to{transform:scale(1)}}
+  @keyframes avIntroMark{0%{opacity:0;transform:translateY(16px) scale(.96)}100%{opacity:1;transform:none}}
+  @keyframes avIntroText{0%{opacity:0;transform:translateY(10px)}100%{opacity:.86;transform:none}}
+  @keyframes avIntroLine{0%{transform:scaleX(0)}100%{transform:scaleX(1)}}
+  @keyframes avIntroVeil{0%{opacity:0}100%{opacity:1}}
+  @keyframes avIntroOut{0%,74%{opacity:1;visibility:visible}100%{opacity:0;visibility:hidden}}
+</style>
+</helmet>
+
+<div style="background:#090A0C;color:#F5F5F5;font-family:'DM Sans',sans-serif;min-height:100vh;overflow-x:hidden">
+
+<header style="position:sticky;top:0;z-index:70;background:rgba(9,10,12,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.08)">
+  <div style="max-width:1360px;margin:0 auto;padding:0 clamp(16px,3vw,40px);height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+    <button onClick="{{ goHome }}" aria-label="XR21MOTORS — página inicial" style="background:none;border:0;padding:0;cursor:pointer;display:flex;align-items:center"><img src="assets/logo-xr21.png" alt="XR21MOTORS" style="height:42px;width:auto;display:block" /></button>
+
+    <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+      <nav aria-label="Navegação principal" style="display:flex;align-items:center;gap:clamp(20px,2.2vw,34px)">
+        <button onClick="{{ goCatalog }}" style="background:none;border:0;padding:6px 0;cursor:pointer;color:#A5A7AB;font-size:14px;font-weight:500;letter-spacing:.01em" style-hover="color:#F5F5F5">Viaturas</button>
+        <button onClick="{{ goFinance }}" style="background:none;border:0;padding:6px 0;cursor:pointer;color:#A5A7AB;font-size:14px;font-weight:500" style-hover="color:#F5F5F5">Financiamento</button>
+        <button onClick="{{ goTrade }}" style="background:none;border:0;padding:6px 0;cursor:pointer;color:#A5A7AB;font-size:14px;font-weight:500" style-hover="color:#F5F5F5">Retomas</button>
+        <button onClick="{{ goAbout }}" style="background:none;border:0;padding:6px 0;cursor:pointer;color:#A5A7AB;font-size:14px;font-weight:500" style-hover="color:#F5F5F5">Sobre nós</button>
+        <button onClick="{{ goContact }}" style="background:none;border:0;padding:6px 0;cursor:pointer;color:#A5A7AB;font-size:14px;font-weight:500" style-hover="color:#F5F5F5">Contactos</button>
+        <button onClick="{{ goCatalog }}" style="margin-left:8px;background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.24);padding:12px 20px;border-radius:2px;cursor:pointer;font-size:13px;font-weight:600;letter-spacing:.04em" style-hover="background:#F5F5F5;color:#0B0C0E;border-color:#F5F5F5">Encontrar viatura</button>
+      </nav>
+    </sc-if>
+
+    <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+      <button onClick="{{ toggleMenu }}" aria-label="Abrir menu" aria-expanded="{{ menu }}" style="background:none;border:1px solid rgba(255,255,255,.14);border-radius:2px;width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer">
+        <span style="display:block;width:18px;height:1px;background:#F5F5F5"></span>
+        <span style="display:block;width:18px;height:1px;background:#F5F5F5"></span>
+        <span style="display:block;width:18px;height:1px;background:#F5F5F5"></span>
+      </button>
+    </sc-if>
+  </div>
+
+  <sc-if value="{{ menu }}" hint-placeholder-val="{{ false }}">
+    <nav aria-label="Navegação principal" style="border-top:1px solid rgba(255,255,255,.08);background:#0B0C0E;padding:14px clamp(16px,4vw,28px) 26px;display:flex;flex-direction:column;gap:2px;animation:avUp .25s ease both">
+      <button onClick="{{ goCatalog }}" style="background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;padding:17px 2px;color:#F5F5F5;font-size:17px;font-family:Manrope,sans-serif;font-weight:500;cursor:pointer">Viaturas</button>
+      <button onClick="{{ goFinance }}" style="background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;padding:17px 2px;color:#F5F5F5;font-size:17px;font-family:Manrope,sans-serif;font-weight:500;cursor:pointer">Financiamento</button>
+      <button onClick="{{ goTrade }}" style="background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;padding:17px 2px;color:#F5F5F5;font-size:17px;font-family:Manrope,sans-serif;font-weight:500;cursor:pointer">Retomas</button>
+      <button onClick="{{ goAbout }}" style="background:none;border:0;border-bottom:1px solid rgba(255,255,255,.06);text-align:left;padding:17px 2px;color:#F5F5F5;font-size:17px;font-family:Manrope,sans-serif;font-weight:500;cursor:pointer">Sobre nós</button>
+      <button onClick="{{ goContact }}" style="background:none;border:0;text-align:left;padding:17px 2px;color:#F5F5F5;font-size:17px;font-family:Manrope,sans-serif;font-weight:500;cursor:pointer">Contactos</button>
+      <a href="{{ waLinkGeneral }}" target="_blank" rel="noopener noreferrer" style="margin-top:12px;background:#C2A47C;color:#0B0C0E;padding:16px;border-radius:2px;text-align:center;font-weight:700;font-size:15px">Falar com um consultor</a>
+    </nav>
+  </sc-if>
+</header>
+
+<main>
+
+<sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+<div>
+  <section aria-label="Destaque" style="position:relative;min-height:clamp(500px,86svh,880px);display:flex;align-items:flex-end;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.08)">
+    <img src="assets/hero-panamera.png" alt="Porsche Panamera 4 E-Hybrid no showroom da XR21MOTORS" fetchPriority="high" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 58%" />
+    <div aria-hidden="true" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(9,10,12,.55) 0%,rgba(9,10,12,.35) 38%,rgba(9,10,12,.92) 88%,#090A0C 100%)"></div>
+    <div style="position:relative;width:100%;max-width:1360px;margin:0 auto;padding:0 clamp(16px,3vw,40px) clamp(56px,7vw,96px)">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 22px">XR21MOTORS · Portugal</p>
+      <h1 style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(34px,5.6vw,76px);line-height:1.02;letter-spacing:-.03em;margin:0;max-width:16ch">A sua próxima viatura começa aqui.</h1>
+      <p style="color:#C9CBCF;font-size:clamp(15px,1.2vw,18px);line-height:1.65;max-width:56ch;margin:24px 0 36px">Viaturas selecionadas, financiamento personalizado e acompanhamento em todas as etapas da compra.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <button onClick="{{ goCatalog }}" style="background:#F5F5F5;color:#0B0C0E;border:0;padding:17px 30px;border-radius:2px;cursor:pointer;font-size:14px;font-weight:700;letter-spacing:.03em" style-hover="background:#FFFFFF">Ver viaturas</button>
+        <a href="{{ waLinkGeneral }}" target="_blank" rel="noopener noreferrer" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.26);padding:17px 30px;border-radius:2px;font-size:14px;font-weight:600;letter-spacing:.03em" style-hover="border-color:#F5F5F5">Falar com um consultor</a>
+      </div>
+      <ul style="list-style:none;margin:clamp(36px,5vw,60px) 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 28px;color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase">
+        <li>Viaturas selecionadas</li>
+        <li aria-hidden="true" style="color:#3A3E43">/</li>
+        <li>Financiamento</li>
+        <li aria-hidden="true" style="color:#3A3E43">/</li>
+        <li>Retomas</li>
+        <li aria-hidden="true" style="color:#3A3E43">/</li>
+        <li>Entrega nacional</li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-label="Pesquisa de viaturas" style="background:#111316;border-bottom:1px solid rgba(255,255,255,.08)">
+    <div style="max-width:1360px;margin:0 auto;padding:clamp(36px,4.5vw,64px) clamp(16px,3vw,40px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px">
+        <h2 style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em;margin:0">Encontre a sua próxima viatura</h2>
+        <p style="margin:0;color:#A5A7AB;font-size:13.5px">{{ totalLabel }}</p>
+      </div>
+      <form onSubmit="{{ submitSearch }}" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(170px,100%),1fr));gap:12px;align-items:end">
+        <label style="display:block">
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:9px">Marca</span>
+          <select name="brand" value="{{ filters.brand }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px 14px;border-radius:2px;font-size:16px;appearance:none">
+            <sc-for list="{{ brands }}" as="b" hint-placeholder-count="3"><option value="{{ b }}">{{ b }}</option></sc-for>
+          </select>
+        </label>
+        <label style="display:block">
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:9px">Modelo</span>
+          <input name="model" value="{{ filters.model }}" onChange="{{ onFilter }}" maxLength="40" placeholder="Ex.: Série 3" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+        </label>
+        <label style="display:block">
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:9px">Preço até {{ maxPriceLabel }}</span>
+          <input type="range" name="maxPrice" min="10000" max="120000" step="1000" value="{{ filters.maxPrice }}" onChange="{{ onFilter }}" aria-label="Preço máximo" style="width:100%;margin:0;accent-color:#C2A47C;height:44px" />
+        </label>
+        <label style="display:block">
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:9px">Ano desde</span>
+          <select name="minYear" value="{{ filters.minYear }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px;appearance:none">
+            <sc-for list="{{ years }}" as="y" hint-placeholder-count="3"><option value="{{ y }}">{{ y }}</option></sc-for>
+          </select>
+        </label>
+        <label style="display:block">
+          <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:9px">Combustível</span>
+          <select name="fuel" value="{{ filters.fuel }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px;appearance:none">
+            <sc-for list="{{ fuels }}" as="f" hint-placeholder-count="3"><option value="{{ f }}">{{ f }}</option></sc-for>
+          </select>
+        </label>
+        <button type="submit" style="background:#C2A47C;color:#0B0C0E;border:0;padding:15px 26px;border-radius:2px;cursor:pointer;font-size:14px;font-weight:700;letter-spacing:.03em;height:48px" style-hover="background:#DCC49B">Pesquisar</button>
+      </form>
+    </div>
+  </section>
+
+  <section aria-labelledby="destaque-h" style="padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto">
+      <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Seleção</p>
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(32px,4vw,52px)">
+        <h2 id="destaque-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,50px);letter-spacing:-.025em;line-height:1.05;margin:0;max-width:22ch">Viaturas em destaque</h2>
+        <button onClick="{{ goCatalog }}" style="background:none;border:0;border-bottom:1px solid rgba(255,255,255,.24);padding:6px 0;color:#F5F5F5;font-size:13.5px;font-weight:600;cursor:pointer;letter-spacing:.02em" style-hover="border-color:#C2A47C;color:#C2A47C">Ver todas as viaturas</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:clamp(16px,2vw,28px)">
+        <sc-for list="{{ featured }}" as="v" hint-placeholder-count="3">
+          <article style="background:#111316;border:1px solid rgba(255,255,255,.08);border-radius:2px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s ease,transform .3s ease" style-hover="border-color:rgba(194,164,124,.45);transform:translateY(-4px)">
+            <div style="position:relative;aspect-ratio:4/3;background:repeating-linear-gradient(135deg,#14171A 0 14px,#191D22 14px 28px);display:flex;align-items:center;justify-content:center">
+              <div role="img" aria-label="{{ v.alt }}" style="position:absolute;inset:0;background-image:{{ v.bg }};background-size:cover;background-position:center"></div><sc-if value="{{ v.noPhoto }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5F6469;text-transform:uppercase;padding:0 16px;text-align:center">{{ v.imgLabel }}</span></sc-if>
+              <sc-if value="{{ v.badge }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:14px;left:14px;background:rgba(9,10,12,.82);backdrop-filter:blur(6px);color:#C2A47C;border:1px solid rgba(194,164,124,.35);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:6px 10px">{{ v.badge }}</span>
+              </sc-if>
+            </div>
+            <div style="padding:22px 22px 24px;display:flex;flex-direction:column;gap:14px;flex:1">
+              <div>
+                <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;margin:0 0 5px">{{ v.title }}</h3>
+                <p style="margin:0;color:#A5A7AB;font-size:13.5px">{{ v.version }}</p>
+              </div>
+              <ul style="list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 14px;color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:13px 0">
+                <li>{{ v.year }}</li>
+                <li>{{ v.kmFmt }}</li>
+                <li>{{ v.fuel }}</li>
+                <li>{{ v.transmission }}</li>
+              </ul>
+              <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+                <div>
+                  <p style="margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:22px;letter-spacing:-.01em">{{ v.priceFmt }}</p>
+                  <sc-if value="{{ showMonthly }}" hint-placeholder-val="{{ true }}">
+                    <p style="margin:4px 0 0;color:#8E9195;font-size:12px">desde {{ v.monthlyFmt }}/mês*</p>
+                  </sc-if>
+                </div>
+                <button onClick="{{ v.open }}" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:12px 18px;border-radius:2px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap" style-hover="background:#F5F5F5;color:#0B0C0E;border-color:#F5F5F5">Ver detalhes</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="servicos-h" style="background:#111316;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:clamp(64px,8vw,116px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto">
+      <h2 id="servicos-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(26px,3.2vw,44px);letter-spacing:-.025em;line-height:1.06;margin:0 0 clamp(36px,5vw,64px);max-width:24ch">Acompanhamento em cada etapa da compra.</h2>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:clamp(28px,3.5vw,48px)">
+        <div style="border-top:1px solid rgba(194,164,124,.4);padding-top:22px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#C2A47C;margin:0 0 14px">01</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:17px;margin:0 0 10px;letter-spacing:.01em">Viaturas selecionadas</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14.5px;line-height:1.65">Escolhemos cuidadosamente cada viatura antes de chegar ao nosso stock.</p>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:22px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#C2A47C;margin:0 0 14px">02</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:17px;margin:0 0 10px;letter-spacing:.01em">Financiamento</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14.5px;line-height:1.65">Soluções adaptadas ao seu perfil e ao seu orçamento.</p>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:22px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#C2A47C;margin:0 0 14px">03</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:17px;margin:0 0 10px;letter-spacing:.01em">Retomas</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14.5px;line-height:1.65">Avaliamos a sua viatura de forma simples e transparente.</p>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.12);padding-top:22px">
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;color:#C2A47C;margin:0 0 14px">04</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:17px;margin:0 0 10px;letter-spacing:.01em">Entrega nacional</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14.5px;line-height:1.65">Possibilidade de entrega em Portugal Continental.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="catalogo-h" style="padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(30px,4vw,48px)">
+        <div>
+          <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Catálogo</p>
+          <h2 id="catalogo-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,50px);letter-spacing:-.025em;line-height:1.05;margin:0">Todas as viaturas</h2>
+        </div>
+        <button onClick="{{ goCatalog }}" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:14px 22px;border-radius:2px;cursor:pointer;font-size:13.5px;font-weight:600" style-hover="background:#F5F5F5;color:#0B0C0E;border-color:#F5F5F5">Abrir catálogo com filtros</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:clamp(14px,1.6vw,22px)">
+        <sc-for list="{{ preview }}" as="v" hint-placeholder-count="6">
+          <article style="background:#111316;border:1px solid rgba(255,255,255,.08);border-radius:2px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s ease" style-hover="border-color:rgba(194,164,124,.45)">
+            <div style="position:relative;aspect-ratio:16/11;background:repeating-linear-gradient(135deg,#14171A 0 14px,#191D22 14px 28px);display:flex;align-items:center;justify-content:center">
+              <div role="img" aria-label="{{ v.alt }}" style="position:absolute;inset:0;background-image:{{ v.bg }};background-size:cover;background-position:center"></div><sc-if value="{{ v.noPhoto }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5F6469;text-transform:uppercase;padding:0 14px;text-align:center">{{ v.imgLabel }}</span></sc-if>
+              <sc-if value="{{ v.badge }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:12px;left:12px;background:rgba(9,10,12,.82);color:#C2A47C;border:1px solid rgba(194,164,124,.35);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 9px">{{ v.badge }}</span>
+              </sc-if>
+            </div>
+            <div style="padding:18px 18px 20px;display:flex;flex-direction:column;gap:12px;flex:1">
+              <div>
+                <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:17px;margin:0 0 4px;letter-spacing:-.01em">{{ v.title }}</h3>
+                <p style="margin:0;color:#A5A7AB;font-size:13px">{{ v.specLine }}</p>
+              </div>
+              <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.07);padding-top:14px">
+                <p style="margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:19px">{{ v.priceFmt }}</p>
+                <button onClick="{{ v.open }}" style="background:none;border:0;color:#C2A47C;font-size:13px;font-weight:600;cursor:pointer;padding:6px 0;border-bottom:1px solid rgba(194,164,124,.3)" style-hover="border-color:#C2A47C">Ver detalhes</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="financiamento" aria-labelledby="fin-h" style="background:#111316;border-top:1px solid rgba(255,255,255,.08);padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:clamp(40px,5vw,80px)">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Financiamento</p>
+        <h2 id="fin-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,50px);letter-spacing:-.025em;line-height:1.05;margin:0 0 22px">Financiamento adaptado a si.</h2>
+        <p style="color:#A5A7AB;font-size:clamp(15px,1.1vw,17px);line-height:1.7;max-width:52ch;margin:0 0 32px">Encontre uma solução adequada ao seu orçamento com acompanhamento personalizado durante todo o processo.</p>
+        <img src="assets/showroom-xc40.png" alt="Volvo XC40 em exposição no showroom da XR21MOTORS" loading="lazy" decoding="async" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid rgba(255,255,255,.07)" />
+      </div>
+      <div style="background:#16191D;border:1px solid rgba(255,255,255,.08);padding:clamp(24px,3vw,40px)">
+        <sc-if value="{{ financeSent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display:flex;flex-direction:column;gap:14px;animation:avUp .3s ease both">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#C2A47C;margin:0">Pedido recebido</p>
+            <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:24px;margin:0;letter-spacing:-.015em">Obrigado.</h3>
+            <p style="margin:0;color:#A5A7AB;font-size:15px;line-height:1.7">Um membro da nossa equipa entrará em contacto consigo.</p>
+            <button onClick="{{ resetFinance }}" style="align-self:flex-start;margin-top:8px;background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:13px 20px;border-radius:2px;cursor:pointer;font-size:13.5px;font-weight:600">Novo pedido</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ financeOpen }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitFinance }}" noValidate="{{ true }}" style="display:grid;gap:16px">
+            <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:20px;margin:0 0 4px;letter-spacing:-.01em">Pedido de contacto para financiamento</h3>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:16px">
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Nome*</span>
+                <input name="name" value="{{ finance.name }}" onChange="{{ onFinance }}" maxLength="80" autoComplete="name" style="width:100%;background:#111316;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ financeErr.name }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ financeErr.name }}</span></sc-if>
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Telemóvel*</span>
+                <input name="phone" value="{{ finance.phone }}" onChange="{{ onFinance }}" maxLength="20" inputMode="tel" autoComplete="tel" style="width:100%;background:#111316;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ financeErr.phone }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ financeErr.phone }}</span></sc-if>
+              </label>
+            </div>
+            <label style="display:block">
+              <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Email*</span>
+              <input name="email" type="email" value="{{ finance.email }}" onChange="{{ onFinance }}" maxLength="120" autoComplete="email" style="width:100%;background:#111316;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+              <sc-if value="{{ financeErr.email }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ financeErr.email }}</span></sc-if>
+            </label>
+            <label style="display:block">
+              <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Viatura</span>
+              <select name="vehicle" value="{{ finance.vehicle }}" onChange="{{ onFinance }}" style="width:100%;background:#111316;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px;appearance:none">
+                <option value="">Sem viatura definida</option>
+                <sc-for list="{{ vehicleNames }}" as="n" hint-placeholder-count="3"><option value="{{ n }}">{{ n }}</option></sc-for>
+              </select>
+            </label>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:16px">
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Entrada pretendida</span>
+                <input name="down" value="{{ finance.down }}" onChange="{{ onFinance }}" maxLength="12" inputMode="numeric" placeholder="€" style="width:100%;background:#111316;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Prazo pretendido</span>
+                <select name="term" value="{{ finance.term }}" onChange="{{ onFinance }}" style="width:100%;background:#111316;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px;appearance:none">
+                  <option value="48">48 meses</option>
+                  <option value="60">60 meses</option>
+                  <option value="72">72 meses</option>
+                  <option value="84">84 meses</option>
+                  <option value="96">96 meses</option>
+                </select>
+              </label>
+            </div>
+            <label style="display:flex;gap:12px;align-items:flex-start;margin-top:4px;cursor:pointer">
+              <input type="checkbox" name="consent" checked="{{ finance.consent }}" onChange="{{ onFinanceConsent }}" style="width:20px;height:20px;margin:2px 0 0;accent-color:#C2A47C;flex:0 0 auto" />
+              <span style="color:#A5A7AB;font-size:13.5px;line-height:1.6">Aceito ser contactado relativamente ao meu pedido.</span>
+            </label>
+            <sc-if value="{{ financeErr.consent }}" hint-placeholder-val="{{ false }}"><span style="color:#E08A7A;font-size:12.5px">{{ financeErr.consent }}</span></sc-if>
+            <button type="submit" style="margin-top:6px;background:#C2A47C;color:#0B0C0E;border:0;padding:17px 26px;border-radius:2px;cursor:pointer;font-size:14.5px;font-weight:700;letter-spacing:.02em" style-hover="background:#DCC49B">Pedir simulação</button>
+            <p style="margin:6px 0 0;color:#71757A;font-size:12px;line-height:1.6">A simulação apresentada é meramente indicativa e está sujeita a análise e aprovação pelas entidades financeiras parceiras.</p>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section id="retomas" aria-labelledby="ret-h" style="background:#090A0C;border-top:1px solid rgba(255,255,255,.08);padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(40px,5vw,80px);align-items:start">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Retoma</p>
+        <h2 id="ret-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,50px);letter-spacing:-.025em;line-height:1.05;margin:0 0 22px">Tem uma viatura para retoma?</h2>
+        <p style="color:#A5A7AB;font-size:clamp(15px,1.1vw,17px);line-height:1.7;max-width:50ch;margin:0">Envie-nos os dados da sua viatura e receba uma avaliação inicial.</p>
+      </div>
+      <div style="background:#111316;border:1px solid rgba(255,255,255,.08);padding:clamp(24px,3vw,40px)">
+        <sc-if value="{{ tradeSent }}" hint-placeholder-val="{{ false }}">
+          <div role="status" style="display:flex;flex-direction:column;gap:14px;animation:avUp .3s ease both">
+            <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#C2A47C;margin:0">Pedido recebido</p>
+            <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:24px;margin:0">Obrigado.</h3>
+            <p style="margin:0;color:#A5A7AB;font-size:15px;line-height:1.7">Um membro da nossa equipa entrará em contacto consigo com uma avaliação inicial.</p>
+            <button onClick="{{ resetTrade }}" style="align-self:flex-start;margin-top:8px;background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:13px 20px;border-radius:2px;cursor:pointer;font-size:13.5px;font-weight:600">Novo pedido</button>
+          </div>
+        </sc-if>
+        <sc-if value="{{ tradeOpen }}" hint-placeholder-val="{{ true }}">
+          <form onSubmit="{{ submitTrade }}" noValidate="{{ true }}" style="display:grid;gap:16px">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:16px">
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Marca*</span>
+                <input name="brand" value="{{ trade.brand }}" onChange="{{ onTrade }}" maxLength="40" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ tradeErr.brand }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ tradeErr.brand }}</span></sc-if>
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Modelo*</span>
+                <input name="model" value="{{ trade.model }}" onChange="{{ onTrade }}" maxLength="40" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ tradeErr.model }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ tradeErr.model }}</span></sc-if>
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Ano*</span>
+                <input name="year" value="{{ trade.year }}" onChange="{{ onTrade }}" maxLength="4" inputMode="numeric" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ tradeErr.year }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ tradeErr.year }}</span></sc-if>
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Quilómetros*</span>
+                <input name="km" value="{{ trade.km }}" onChange="{{ onTrade }}" maxLength="9" inputMode="numeric" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ tradeErr.km }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ tradeErr.km }}</span></sc-if>
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Matrícula (opcional)</span>
+                <input name="plate" value="{{ trade.plate }}" onChange="{{ onTrade }}" maxLength="12" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+              </label>
+              <label style="display:block">
+                <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Nome*</span>
+                <input name="name" value="{{ trade.name }}" onChange="{{ onTrade }}" maxLength="80" autoComplete="name" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+                <sc-if value="{{ tradeErr.name }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ tradeErr.name }}</span></sc-if>
+              </label>
+            </div>
+            <label style="display:block">
+              <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Telemóvel*</span>
+              <input name="phone" value="{{ trade.phone }}" onChange="{{ onTrade }}" maxLength="20" inputMode="tel" autoComplete="tel" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:14px;border-radius:2px;font-size:16px" />
+              <sc-if value="{{ tradeErr.phone }}" hint-placeholder-val="{{ false }}"><span style="display:block;margin-top:7px;color:#E08A7A;font-size:12.5px">{{ tradeErr.phone }}</span></sc-if>
+            </label>
+            <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer">
+              <input type="checkbox" name="consent" checked="{{ trade.consent }}" onChange="{{ onTradeConsent }}" style="width:20px;height:20px;margin:2px 0 0;accent-color:#C2A47C;flex:0 0 auto" />
+              <span style="color:#A5A7AB;font-size:13.5px;line-height:1.6">Aceito ser contactado relativamente ao meu pedido.</span>
+            </label>
+            <sc-if value="{{ tradeErr.consent }}" hint-placeholder-val="{{ false }}"><span style="color:#E08A7A;font-size:12.5px">{{ tradeErr.consent }}</span></sc-if>
+            <button type="submit" style="margin-top:6px;background:#F5F5F5;color:#0B0C0E;border:0;padding:17px 26px;border-radius:2px;cursor:pointer;font-size:14.5px;font-weight:700">Pedir avaliação</button>
+            <p style="margin:2px 0 0;color:#71757A;font-size:12px;line-height:1.6">A avaliação inicial é indicativa e não dispensa a verificação presencial da viatura.</p>
+          </form>
+        </sc-if>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="proc-h" style="background:#111316;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto">
+      <h2 id="proc-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(26px,3.4vw,46px);letter-spacing:-.025em;line-height:1.06;margin:0 0 clamp(40px,5vw,68px);max-width:26ch">Comprar a sua próxima viatura pode ser simples.</h2>
+      <ol style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1px;background:rgba(255,255,255,.08)">
+        <li style="background:#111316;padding:clamp(24px,3vw,38px) clamp(20px,2vw,30px)">
+          <p style="font-family:Manrope,sans-serif;font-weight:700;font-size:34px;color:#22262B;margin:0 0 26px;letter-spacing:-.02em">01</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:18px;margin:0 0 10px">Escolha</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14px;line-height:1.65">Explore o catálogo e selecione a viatura que corresponde ao que procura.</p>
+        </li>
+        <li style="background:#111316;padding:clamp(24px,3vw,38px) clamp(20px,2vw,30px)">
+          <p style="font-family:Manrope,sans-serif;font-weight:700;font-size:34px;color:#22262B;margin:0 0 26px;letter-spacing:-.02em">02</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:18px;margin:0 0 10px">Fale connosco</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14px;line-height:1.65">Esclareça dúvidas, peça mais fotografias ou marque uma visita ao stand.</p>
+        </li>
+        <li style="background:#111316;padding:clamp(24px,3vw,38px) clamp(20px,2vw,30px)">
+          <p style="font-family:Manrope,sans-serif;font-weight:700;font-size:34px;color:#22262B;margin:0 0 26px;letter-spacing:-.02em">03</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:18px;margin:0 0 10px">Financiamento ou retoma</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14px;line-height:1.65">Avaliamos as opções disponíveis e a possibilidade de retoma da sua viatura.</p>
+        </li>
+        <li style="background:#111316;padding:clamp(24px,3vw,38px) clamp(20px,2vw,30px)">
+          <p style="font-family:Manrope,sans-serif;font-weight:700;font-size:34px;color:#C2A47C;margin:0 0 26px;letter-spacing:-.02em">04</p>
+          <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:18px;margin:0 0 10px">Leve a sua viatura</h3>
+          <p style="margin:0;color:#A5A7AB;font-size:14px;line-height:1.65">Levantamento no stand ou entrega em Portugal Continental.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="sobre" aria-labelledby="sobre-h" style="padding:clamp(64px,8vw,120px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:clamp(40px,5vw,84px);align-items:center">
+      <img src="assets/bmw-serie1-traseira.png" alt="Interior do showroom da XR21MOTORS com viaturas em exposição" loading="lazy" decoding="async" style="width:100%;aspect-ratio:5/4;object-fit:cover;display:block;border:1px solid rgba(255,255,255,.07)" />
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Sobre nós</p>
+        <h2 id="sobre-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(24px,2.8vw,38px);letter-spacing:-.02em;line-height:1.2;margin:0 0 24px;max-width:26ch">Na XR21MOTORS, cada cliente procura mais do que uma viatura. Procura confiança na escolha.</h2>
+        <p style="color:#A5A7AB;font-size:clamp(15px,1.1vw,17px);line-height:1.75;max-width:54ch;margin:0 0 18px">O nosso trabalho começa antes da viatura chegar ao stand: na seleção, na verificação e na apresentação honesta de cada unidade. Preferimos um stock cuidado a um stock grande.</p>
+        <p style="color:#A5A7AB;font-size:clamp(15px,1.1vw,17px);line-height:1.75;max-width:54ch;margin:0 0 32px">Acompanhamos o processo de ponta a ponta — esclarecimento, financiamento, retoma e entrega — com um interlocutor único e comunicação direta.</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:1px;background:rgba(255,255,255,.08)">
+          <li style="background:#090A0C;padding:18px 16px;color:#C9CBCF;font-size:13.5px">Compra acompanhada</li>
+          <li style="background:#090A0C;padding:18px 16px;color:#C9CBCF;font-size:13.5px">Atendimento personalizado</li>
+          <li style="background:#090A0C;padding:18px 16px;color:#C9CBCF;font-size:13.5px">Entrega disponível</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="rev-h" style="background:#111316;border-top:1px solid rgba(255,255,255,.08);padding:clamp(64px,8vw,116px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:clamp(32px,4vw,54px)">
+        <h2 id="rev-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(26px,3.2vw,44px);letter-spacing:-.025em;margin:0">O que dizem os nossos clientes</h2>
+        <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#71757A">Depoimentos demonstrativos</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:clamp(16px,2vw,26px)">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <figure style="margin:0;background:#16191D;border:1px solid rgba(255,255,255,.08);padding:clamp(22px,2.4vw,32px);display:flex;flex-direction:column;gap:18px">
+            <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#C2A47C">{{ r.stars }}</p>
+            <blockquote style="margin:0;font-family:Manrope,sans-serif;font-size:16.5px;line-height:1.6;color:#E8E9EA;letter-spacing:-.005em">{{ r.text }}</blockquote>
+            <figcaption style="margin-top:auto;color:#8E9195;font-size:13px">{{ r.author }} · {{ r.city }}</figcaption>
+          </figure>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="cta-h" style="border-top:1px solid rgba(255,255,255,.08);padding:clamp(72px,9vw,140px) clamp(16px,3vw,40px);text-align:center">
+    <div style="max-width:820px;margin:0 auto">
+      <h2 id="cta-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(30px,4.4vw,62px);letter-spacing:-.03em;line-height:1.04;margin:0 0 22px">Encontre a viatura certa. Sem pressa, com apoio.</h2>
+      <p style="color:#A5A7AB;font-size:clamp(15px,1.2vw,18px);line-height:1.7;margin:0 auto 38px;max-width:48ch">Fale com um consultor e receba uma proposta adequada ao seu orçamento.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+        <button onClick="{{ goCatalog }}" style="background:#F5F5F5;color:#0B0C0E;border:0;padding:17px 32px;border-radius:2px;cursor:pointer;font-size:14.5px;font-weight:700">Ver viaturas</button>
+        <a href="{{ waLinkGeneral }}" target="_blank" rel="noopener noreferrer" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.26);padding:17px 32px;border-radius:2px;font-size:14.5px;font-weight:600">Falar com um consultor</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contactos" aria-labelledby="cont-h" style="background:#111316;border-top:1px solid rgba(255,255,255,.08);padding:clamp(64px,8vw,116px) clamp(16px,3vw,40px)">
+    <div style="max-width:1360px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:clamp(36px,4vw,64px)">
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Contactos</p>
+        <h2 id="cont-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(26px,3.2vw,42px);letter-spacing:-.025em;line-height:1.08;margin:0 0 32px">Visite-nos ou fale connosco.</h2>
+        <dl style="margin:0;display:grid;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)">
+          <div style="background:#16191D;padding:18px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">Telefone</dt>
+            <dd style="margin:0"><a href="{{ telLink }}" style="color:#F5F5F5;font-size:14.5px">{{ cfg.phone }}</a></dd>
+          </div>
+          <div style="background:#16191D;padding:18px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">WhatsApp</dt>
+            <dd style="margin:0"><a href="{{ waLinkGeneral }}" target="_blank" rel="noopener noreferrer" style="color:#F5F5F5;font-size:14.5px">{{ cfg.whatsappDisplay }}</a></dd>
+          </div>
+          <div style="background:#16191D;padding:18px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">Email</dt>
+            <dd style="margin:0"><a href="{{ mailLink }}" style="color:#F5F5F5;font-size:14.5px">{{ cfg.email }}</a></dd>
+          </div>
+          <div style="background:#16191D;padding:18px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">Instagram</dt>
+            <dd style="margin:0"><a href="{{ cfg.instagram }}" target="_blank" rel="noopener noreferrer" style="color:#F5F5F5;font-size:14.5px">{{ cfg.instagramHandle }}</a></dd>
+          </div>
+          <div style="background:#16191D;padding:18px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">Localização</dt>
+            <dd style="margin:0;color:#F5F5F5;font-size:14.5px;text-align:right">{{ cfg.address }}</dd>
+          </div>
+          <div style="background:#16191D;padding:18px 20px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase">Horário</dt>
+            <dd style="margin:0;color:#F5F5F5;font-size:14.5px;text-align:right">Seg–Sáb · 10:00–19:00</dd>
+          </div>
+        </dl>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div style="flex:1;min-height:280px;background:repeating-linear-gradient(135deg,#14171A 0 14px,#191D22 14px 28px);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5F6469;text-transform:uppercase;text-align:center;padding:0 20px">mapa — google maps embed (placeholder)</span>
+        </div>
+        <a href="{{ mapsLink }}" target="_blank" rel="noopener noreferrer" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:16px;border-radius:2px;text-align:center;font-size:14px;font-weight:600" style-hover="background:#F5F5F5;color:#0B0C0E">Obter direções</a>
+      </div>
+    </div>
+  </section>
+</div>
+</sc-if>
+
+<sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ false }}">
+<div style="padding:clamp(36px,5vw,72px) clamp(16px,3vw,40px) clamp(64px,8vw,110px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <nav aria-label="Caminho" style="display:flex;gap:10px;align-items:center;margin-bottom:26px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#71757A">
+      <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;color:#A5A7AB;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase">Início</button>
+      <span aria-hidden="true">/</span>
+      <span style="color:#F5F5F5">Viaturas</span>
+    </nav>
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:clamp(28px,3.5vw,44px)">
+      <h1 style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(30px,4vw,54px);letter-spacing:-.03em;margin:0">Todas as viaturas</h1>
+      <p style="margin:0;color:#A5A7AB;font-size:14px">{{ resultLabel }}</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(160px,100%),1fr));gap:12px;background:#111316;border:1px solid rgba(255,255,255,.08);padding:clamp(16px,2vw,24px);margin-bottom:clamp(24px,3vw,40px);align-items:end">
+      <label style="display:block">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Marca</span>
+        <select name="brand" value="{{ filters.brand }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:13px;border-radius:2px;font-size:16px;appearance:none">
+          <sc-for list="{{ brands }}" as="b" hint-placeholder-count="3"><option value="{{ b }}">{{ b }}</option></sc-for>
+        </select>
+      </label>
+      <label style="display:block">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Preço até {{ maxPriceLabel }}</span>
+        <input type="range" name="maxPrice" min="10000" max="120000" step="1000" value="{{ filters.maxPrice }}" onChange="{{ onFilter }}" aria-label="Preço máximo" style="width:100%;margin:0;accent-color:#C2A47C;height:44px" />
+      </label>
+      <label style="display:block">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Ano desde</span>
+        <select name="minYear" value="{{ filters.minYear }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:13px;border-radius:2px;font-size:16px;appearance:none">
+          <sc-for list="{{ years }}" as="y" hint-placeholder-count="3"><option value="{{ y }}">{{ y }}</option></sc-for>
+        </select>
+      </label>
+      <label style="display:block">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Combustível</span>
+        <select name="fuel" value="{{ filters.fuel }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:13px;border-radius:2px;font-size:16px;appearance:none">
+          <sc-for list="{{ fuels }}" as="f" hint-placeholder-count="3"><option value="{{ f }}">{{ f }}</option></sc-for>
+        </select>
+      </label>
+      <label style="display:block">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Caixa</span>
+        <select name="gear" value="{{ filters.gear }}" onChange="{{ onFilter }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:13px;border-radius:2px;font-size:16px;appearance:none">
+          <sc-for list="{{ gears }}" as="g" hint-placeholder-count="3"><option value="{{ g }}">{{ g }}</option></sc-for>
+        </select>
+      </label>
+      <label style="display:block">
+        <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#8E9195;margin-bottom:8px">Ordenar por</span>
+        <select name="sort" value="{{ sort }}" onChange="{{ onSort }}" style="width:100%;background:#16191D;border:1px solid rgba(255,255,255,.1);color:#F5F5F5;padding:13px;border-radius:2px;font-size:16px;appearance:none">
+          <option value="recentes">Mais recentes</option>
+          <option value="preco-asc">Preço mais baixo</option>
+          <option value="preco-desc">Preço mais alto</option>
+          <option value="km">Menor quilometragem</option>
+        </select>
+      </label>
+    </div>
+
+    <sc-if value="{{ loading }}" hint-placeholder-val="{{ false }}">
+      <div aria-busy="true" aria-live="polite" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:clamp(14px,1.6vw,22px)">
+        <sc-for list="{{ skeletons }}" as="s" hint-placeholder-count="6">
+          <div style="background:#111316;border:1px solid rgba(255,255,255,.08);animation:avPulse 1.4s ease-in-out infinite">
+            <div style="aspect-ratio:16/11;background:#191D22"></div>
+            <div style="padding:20px;display:grid;gap:12px">
+              <div style="height:14px;width:65%;background:#22262B"></div>
+              <div style="height:11px;width:45%;background:#1C2025"></div>
+              <div style="height:18px;width:35%;background:#22262B;margin-top:8px"></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+      <div role="status" style="border:1px solid rgba(255,255,255,.08);background:#111316;padding:clamp(40px,6vw,80px) 24px;text-align:center">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px">Sem resultados</p>
+        <h2 style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(20px,2.4vw,28px);margin:0 0 12px;letter-spacing:-.015em">Não encontrámos viaturas com estes critérios.</h2>
+        <p style="margin:0 auto 28px;color:#A5A7AB;font-size:15px;line-height:1.7;max-width:44ch">Ajuste os filtros ou diga-nos o que procura — podemos localizar a viatura por encomenda.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center">
+          <button onClick="{{ clearFilters }}" style="background:#F5F5F5;color:#0B0C0E;border:0;padding:15px 26px;border-radius:2px;cursor:pointer;font-size:14px;font-weight:700">Limpar filtros</button>
+          <a href="{{ waLinkGeneral }}" target="_blank" rel="noopener noreferrer" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:15px 26px;border-radius:2px;font-size:14px;font-weight:600">Falar com um consultor</a>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr));gap:clamp(14px,1.6vw,24px)">
+        <sc-for list="{{ results }}" as="v" hint-placeholder-count="6">
+          <article style="background:#111316;border:1px solid rgba(255,255,255,.08);border-radius:2px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s ease,transform .3s ease" style-hover="border-color:rgba(194,164,124,.45);transform:translateY(-3px)">
+            <div style="position:relative;aspect-ratio:16/11;background:repeating-linear-gradient(135deg,#14171A 0 14px,#191D22 14px 28px);display:flex;align-items:center;justify-content:center">
+              <div role="img" aria-label="{{ v.alt }}" style="position:absolute;inset:0;background-image:{{ v.bg }};background-size:cover;background-position:center"></div><sc-if value="{{ v.noPhoto }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5F6469;text-transform:uppercase;padding:0 16px;text-align:center">{{ v.imgLabel }}</span></sc-if>
+              <sc-if value="{{ v.badge }}" hint-placeholder-val="{{ false }}">
+                <span style="position:absolute;top:12px;left:12px;background:rgba(9,10,12,.82);color:#C2A47C;border:1px solid rgba(194,164,124,.35);font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 9px">{{ v.badge }}</span>
+              </sc-if>
+            </div>
+            <div style="padding:20px;display:flex;flex-direction:column;gap:13px;flex:1">
+              <div>
+                <h2 style="font-family:Manrope,sans-serif;font-weight:600;font-size:18px;margin:0 0 4px;letter-spacing:-.01em">{{ v.title }}</h2>
+                <p style="margin:0;color:#A5A7AB;font-size:13px">{{ v.version }}</p>
+              </div>
+              <ul style="list-style:none;margin:0;padding:12px 0;display:flex;flex-wrap:wrap;gap:6px 14px;color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07)">
+                <li>{{ v.year }}</li>
+                <li>{{ v.kmFmt }}</li>
+                <li>{{ v.fuel }}</li>
+                <li>{{ v.transmission }}</li>
+              </ul>
+              <div style="margin-top:auto;display:flex;align-items:flex-end;justify-content:space-between;gap:12px">
+                <div>
+                  <p style="margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:20px">{{ v.priceFmt }}</p>
+                  <sc-if value="{{ showMonthly }}" hint-placeholder-val="{{ true }}">
+                    <p style="margin:4px 0 0;color:#8E9195;font-size:12px">desde {{ v.monthlyFmt }}/mês*</p>
+                  </sc-if>
+                </div>
+                <button onClick="{{ v.open }}" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:12px 18px;border-radius:2px;cursor:pointer;font-size:13px;font-weight:600;white-space:nowrap" style-hover="background:#F5F5F5;color:#0B0C0E;border-color:#F5F5F5">Ver detalhes</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+</div>
+</sc-if>
+
+<sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+<article style="padding:clamp(24px,3.5vw,56px) clamp(16px,3vw,40px) clamp(90px,10vw,120px)">
+  <div style="max-width:1360px;margin:0 auto">
+    <nav aria-label="Caminho" style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:26px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#71757A">
+      <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;color:#A5A7AB;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase">Início</button>
+      <span aria-hidden="true">/</span>
+      <button onClick="{{ goCatalog }}" style="background:none;border:0;padding:0;color:#A5A7AB;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase">Viaturas</button>
+      <span aria-hidden="true">/</span>
+      <span style="color:#A5A7AB">{{ car.brand }}</span>
+      <span aria-hidden="true">/</span>
+      <span style="color:#A5A7AB">{{ car.model }}</span>
+      <span aria-hidden="true">/</span>
+      <span style="color:#F5F5F5">{{ car.version }}</span>
+    </nav>
+
+    <div style="display:grid;grid-template-columns:{{ detailCols }};gap:clamp(28px,3.5vw,56px);align-items:start">
+      <div>
+        <button onClick="{{ openLightbox }}" aria-label="Abrir galeria em ecrã inteiro" style="position:relative;display:block;width:100%;padding:0;border:1px solid rgba(255,255,255,.08);background:repeating-linear-gradient(135deg,#14171A 0 16px,#191D22 16px 32px);aspect-ratio:16/10;cursor:zoom-in;overflow:hidden">
+          <span role="img" aria-label="{{ car.alt }} — {{ currentImage }}" style="position:absolute;inset:0;background-image:{{ currentBg }};background-size:cover;background-position:center"></span>
+          <sc-if value="{{ currentNoSrc }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:#5F6469;text-transform:uppercase;padding:0 20px;text-align:center">{{ car.title }} — {{ currentImage }}</span></sc-if>
+          <span style="position:absolute;bottom:14px;right:14px;background:rgba(9,10,12,.8);color:#C9CBCF;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.12em;padding:7px 11px;border:1px solid rgba(255,255,255,.1)">{{ galCounter }}</span>
+          <sc-if value="{{ car.reserved }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:14px;left:14px;background:rgba(9,10,12,.85);color:#C2A47C;border:1px solid rgba(194,164,124,.35);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;padding:7px 11px">Reservado</span>
+          </sc-if>
+        </button>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(96px,100%),1fr));gap:8px;margin-top:8px">
+          <sc-for list="{{ thumbs }}" as="t" hint-placeholder-count="8">
+            <button onClick="{{ t.select }}" aria-label="{{ t.label }}" style="position:relative;overflow:hidden;aspect-ratio:4/3;border:1px solid {{ t.border }};background:repeating-linear-gradient(135deg,#14171A 0 10px,#191D22 10px 20px);cursor:pointer;padding:0;display:flex;align-items:center;justify-content:center;opacity:{{ t.opacity }}">
+              <span aria-hidden="true" style="position:absolute;inset:0;background-image:{{ t.bg }};background-size:cover;background-position:center"></span>
+              <sc-if value="{{ t.noSrc }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.1em;color:#5F6469;text-transform:uppercase;padding:0 6px;text-align:center">{{ t.short }}</span></sc-if>
+            </button>
+          </sc-for>
+        </div>
+
+        <section aria-labelledby="specs-h" style="margin-top:clamp(40px,5vw,64px)">
+          <h2 id="specs-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em;margin:0 0 22px">Especificações</h2>
+          <dl style="margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08)">
+            <sc-for list="{{ specs }}" as="s" hint-placeholder-count="8">
+              <div style="background:#111316;padding:18px 20px">
+                <dt style="color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px">{{ s.k }}</dt>
+                <dd style="margin:0;color:#F5F5F5;font-size:15.5px;font-family:Manrope,sans-serif;font-weight:500">{{ s.v }}</dd>
+              </div>
+            </sc-for>
+          </dl>
+        </section>
+
+        <section aria-labelledby="desc-h" style="margin-top:clamp(40px,5vw,64px)">
+          <h2 id="desc-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em;margin:0 0 18px">Descrição</h2>
+          <p style="margin:0;color:#A5A7AB;font-size:16px;line-height:1.75;max-width:66ch">{{ car.description }}</p>
+        </section>
+
+        <section aria-labelledby="equip-h" style="margin-top:clamp(40px,5vw,64px)">
+          <h2 id="equip-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(20px,2.2vw,28px);letter-spacing:-.02em;margin:0 0 26px">Equipamento</h2>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:clamp(24px,3vw,40px)">
+            <sc-for list="{{ equipGroups }}" as="g" hint-placeholder-count="5">
+              <div>
+                <h3 style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#C2A47C;margin:0 0 16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08)">{{ g.title }}</h3>
+                <ul style="list-style:none;margin:0;padding:0;display:grid;gap:11px">
+                  <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+                    <li style="color:#C9CBCF;font-size:14.5px;line-height:1.5">{{ i }}</li>
+                  </sc-for>
+                </ul>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <p style="margin:clamp(36px,4vw,52px) 0 0;color:#5F6469;font-size:11.5px;line-height:1.7;max-width:70ch">Dados demonstrativos. As características apresentadas não constituem oferta comercial nem confirmam disponibilidade de stock.</p>
+      </div>
+
+      <aside style="position:{{ asideSticky }};top:98px">
+        <div style="background:#111316;border:1px solid rgba(255,255,255,.1);padding:clamp(22px,2.4vw,32px)">
+          <h1 style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.025em;line-height:1.12;margin:0 0 6px">{{ car.title }}</h1>
+          <p style="margin:0 0 22px;color:#A5A7AB;font-size:14.5px">{{ car.version }} · {{ car.color }}</p>
+          <p style="margin:0;font-family:Manrope,sans-serif;font-weight:700;font-size:clamp(28px,3vw,38px);letter-spacing:-.025em">{{ car.priceFmt }}</p>
+          <sc-if value="{{ showMonthly }}" hint-placeholder-val="{{ true }}">
+            <p style="margin:8px 0 0;color:#8E9195;font-size:13.5px">ou desde <span style="color:#C2A47C;font-weight:600">{{ car.monthlyFmt }}/mês*</span></p>
+          </sc-if>
+          <ul style="list-style:none;margin:24px 0;padding:18px 0;display:flex;flex-wrap:wrap;gap:8px 18px;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);color:#8E9195;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase">
+            <li>{{ car.year }}</li>
+            <li>{{ car.kmFmt }}</li>
+            <li>{{ car.fuel }}</li>
+            <li>{{ car.powerFmt }}</li>
+            <li>{{ car.transmission }}</li>
+          </ul>
+          <p style="margin:0 0 20px;font-family:Manrope,sans-serif;font-weight:600;font-size:16px">Interessado nesta viatura?</p>
+          <div style="display:grid;gap:9px">
+            <a href="{{ waLinkCar }}" target="_blank" rel="noopener noreferrer" style="background:#F5F5F5;color:#0B0C0E;padding:16px;border-radius:2px;text-align:center;font-size:14.5px;font-weight:700" style-hover="background:#FFFFFF">Falar com um consultor</a>
+            <button onClick="{{ goFinanceWithCar }}" style="background:#C2A47C;color:#0B0C0E;border:0;padding:16px;border-radius:2px;cursor:pointer;font-size:14.5px;font-weight:700" style-hover="background:#DCC49B">Simular financiamento</button>
+            <button onClick="{{ goTrade }}" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:16px;border-radius:2px;cursor:pointer;font-size:14px;font-weight:600" style-hover="border-color:#F5F5F5">Tenho uma viatura para retoma</button>
+          </div>
+          <dl style="margin:22px 0 0;display:flex;justify-content:space-between;gap:12px;padding-top:18px;border-top:1px solid rgba(255,255,255,.08);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#71757A">
+            <dt>Referência</dt>
+            <dd style="margin:0;color:#A5A7AB">{{ car.ref }}</dd>
+          </dl>
+          <dl style="margin:12px 0 0;display:flex;justify-content:space-between;gap:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#71757A">
+            <dt>Localização</dt>
+            <dd style="margin:0;color:#A5A7AB">{{ car.location }}</dd>
+          </dl>
+        </div>
+        <p style="margin:14px 0 0;color:#5F6469;font-size:11.5px;line-height:1.65">*Valor indicativo, sujeito a análise e aprovação pelas entidades financeiras parceiras.</p>
+      </aside>
+    </div>
+
+    <section aria-labelledby="sim-h" style="margin-top:clamp(56px,7vw,100px);border-top:1px solid rgba(255,255,255,.08);padding-top:clamp(40px,5vw,64px)">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:28px">
+        <h2 id="sim-h" style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(22px,2.6vw,34px);letter-spacing:-.025em;margin:0">Viaturas semelhantes</h2>
+        <button onClick="{{ goCatalog }}" style="background:none;border:0;border-bottom:1px solid rgba(255,255,255,.22);padding:6px 0;color:#F5F5F5;font-size:13.5px;font-weight:600;cursor:pointer" style-hover="border-color:#C2A47C;color:#C2A47C">Ver todas</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(280px,100%),1fr));gap:clamp(14px,1.6vw,22px)">
+        <sc-for list="{{ similar }}" as="v" hint-placeholder-count="3">
+          <article style="background:#111316;border:1px solid rgba(255,255,255,.08);overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s ease" style-hover="border-color:rgba(194,164,124,.45)">
+            <div style="position:relative;aspect-ratio:16/11;background:repeating-linear-gradient(135deg,#14171A 0 14px,#191D22 14px 28px);display:flex;align-items:center;justify-content:center">
+              <div role="img" aria-label="{{ v.alt }}" style="position:absolute;inset:0;background-image:{{ v.bg }};background-size:cover;background-position:center"></div><sc-if value="{{ v.noPhoto }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#5F6469;text-transform:uppercase;padding:0 14px;text-align:center">{{ v.imgLabel }}</span></sc-if>
+            </div>
+            <div style="padding:18px;display:flex;flex-direction:column;gap:12px;flex:1">
+              <div>
+                <h3 style="font-family:Manrope,sans-serif;font-weight:600;font-size:17px;margin:0 0 4px">{{ v.title }}</h3>
+                <p style="margin:0;color:#A5A7AB;font-size:13px">{{ v.specLine }}</p>
+              </div>
+              <div style="margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.07);padding-top:14px">
+                <p style="margin:0;font-family:Manrope,sans-serif;font-weight:600;font-size:19px">{{ v.priceFmt }}</p>
+                <button onClick="{{ v.open }}" style="background:none;border:0;color:#C2A47C;font-size:13px;font-weight:600;cursor:pointer;padding:6px 0;border-bottom:1px solid rgba(194,164,124,.3)">Ver detalhes</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+</article>
+</sc-if>
+
+<sc-if value="{{ isLegal }}" hint-placeholder-val="{{ false }}">
+<div style="padding:clamp(36px,5vw,72px) clamp(16px,3vw,40px) clamp(64px,8vw,110px)">
+  <div style="max-width:760px;margin:0 auto">
+    <nav aria-label="Caminho" style="display:flex;gap:10px;align-items:center;margin-bottom:26px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#71757A">
+      <button onClick="{{ goHome }}" style="background:none;border:0;padding:0;color:#A5A7AB;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase">Início</button>
+      <span aria-hidden="true">/</span>
+      <span style="color:#F5F5F5">{{ legalTitle }}</span>
+    </nav>
+    <h1 style="font-family:Manrope,sans-serif;font-weight:600;font-size:clamp(28px,3.6vw,46px);letter-spacing:-.03em;margin:0 0 28px">{{ legalTitle }}</h1>
+    <sc-for list="{{ legalBlocks }}" as="b" hint-placeholder-count="4">
+      <div style="margin-bottom:32px">
+        <h2 style="font-family:Manrope,sans-serif;font-weight:600;font-size:19px;letter-spacing:-.01em;margin:0 0 12px">{{ b.h }}</h2>
+        <p style="margin:0;color:#A5A7AB;font-size:15.5px;line-height:1.8">{{ b.p }}</p>
+      </div>
+    </sc-for>
+    <p style="margin:40px 0 0;color:#5F6469;font-size:12px;line-height:1.7">Conceito demonstrativo. Os textos apresentados são exemplificativos e devem ser validados juridicamente antes de publicação.</p>
+  </div>
+</div>
+</sc-if>
+
+</main>
+
+<footer style="background:#0B0C0E;border-top:1px solid rgba(255,255,255,.08);padding:clamp(48px,6vw,84px) clamp(16px,3vw,40px) 28px">
+  <div style="max-width:1360px;margin:0 auto">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(190px,100%),1fr));gap:clamp(32px,4vw,56px);padding-bottom:clamp(36px,4vw,56px)">
+      <div>
+        <img src="assets/logo-xr21.png" alt="XR21MOTORS" style="height:54px;width:auto;display:block;margin:0 0 18px" />
+        <p style="margin:0;color:#8E9195;font-size:13.5px;line-height:1.7;max-width:30ch">Viaturas selecionadas, financiamento e retomas. {{ cfg.address }}</p>
+      </div>
+      <nav aria-label="Viaturas e serviços">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5F6469;margin:0 0 18px">Navegação</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:12px">
+          <li><button onClick="{{ goCatalog }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Viaturas</button></li>
+          <li><button onClick="{{ goFinance }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Financiamento</button></li>
+          <li><button onClick="{{ goTrade }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Retomas</button></li>
+          <li><button onClick="{{ goContact }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Contactos</button></li>
+        </ul>
+      </nav>
+      <nav aria-label="Informação legal">
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5F6469;margin:0 0 18px">Legal</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:12px">
+          <li><button onClick="{{ goTerms }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Termos</button></li>
+          <li><button onClick="{{ goPrivacy }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Privacidade</button></li>
+          <li><button onClick="{{ goCookies }}" style="background:none;border:0;padding:0;color:#A5A7AB;font-size:14px;cursor:pointer;font-family:'DM Sans',sans-serif" style-hover="color:#F5F5F5">Cookies</button></li>
+        </ul>
+      </nav>
+      <div>
+        <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#5F6469;margin:0 0 18px">Contacto</p>
+        <ul style="list-style:none;margin:0;padding:0;display:grid;gap:12px">
+          <li><a href="{{ telLink }}" style="color:#A5A7AB;font-size:14px">{{ cfg.phone }}</a></li>
+          <li><a href="{{ mailLink }}" style="color:#A5A7AB;font-size:14px">{{ cfg.email }}</a></li>
+          <li><a href="{{ cfg.instagram }}" target="_blank" rel="noopener noreferrer" style="color:#A5A7AB;font-size:14px">{{ cfg.instagramHandle }}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.08);padding-top:24px;display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center">
+      <p style="margin:0;color:#5F6469;font-size:11.5px">© 2026 XR21MOTORS. Todos os direitos reservados.</p>
+      <sc-if value="{{ demoMode }}" hint-placeholder-val="{{ true }}">
+        <p style="margin:0;color:#5F6469;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase">Conceito demonstrativo — KRONUS Soluções Digitais</p>
+      </sc-if>
+    </div>
+  </div>
+</footer>
+
+<sc-if value="{{ showMobileBar }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;bottom:0;left:0;right:0;z-index:80;background:rgba(11,12,14,.94);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid rgba(255,255,255,.1);padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:14px">
+    <div style="min-width:0">
+      <p style="margin:0;font-family:Manrope,sans-serif;font-weight:700;font-size:18px;letter-spacing:-.01em;white-space:nowrap">{{ car.priceFmt }}</p>
+      <p style="margin:2px 0 0;color:#8E9195;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ car.title }}</p>
+    </div>
+    <a href="{{ waLinkCar }}" target="_blank" rel="noopener noreferrer" style="flex:1;background:#C2A47C;color:#0B0C0E;padding:15px 12px;border-radius:2px;text-align:center;font-size:14.5px;font-weight:700;min-height:48px;display:flex;align-items:center;justify-content:center">Tenho interesse</a>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showWaFloat }}" hint-placeholder-val="{{ true }}">
+  <a href="{{ waLinkContext }}" target="_blank" rel="noopener noreferrer" aria-label="Falar por WhatsApp" style="position:fixed;right:clamp(14px,2vw,28px);bottom:calc(clamp(14px,2vw,28px) + env(safe-area-inset-bottom));z-index:75;background:rgba(22,25,29,.92);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.14);color:#F5F5F5;padding:13px 18px;border-radius:2px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:10px;min-height:48px" style-hover="border-color:#C2A47C;color:#C2A47C">
+    <span aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:#5DBB6A;display:block"></span>WhatsApp
+  </a>
+</sc-if>
+
+<sc-if value="{{ lightboxOpen }}" hint-placeholder-val="{{ false }}">
+  <div role="dialog" aria-modal="true" aria-label="Galeria da viatura" style="position:fixed;inset:0;z-index:100;background:rgba(6,7,8,.97);display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(14px,2vw,28px);border-bottom:1px solid rgba(255,255,255,.08)">
+      <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#A5A7AB">{{ car.title }} · {{ galCounter }}</p>
+      <button onClick="{{ closeLightbox }}" aria-label="Fechar galeria" style="background:none;border:1px solid rgba(255,255,255,.16);color:#F5F5F5;width:44px;height:44px;border-radius:2px;cursor:pointer;font-size:18px;line-height:1" style-hover="border-color:#F5F5F5">×</button>
+    </div>
+    <div style="flex:1;display:flex;align-items:center;gap:10px;padding:clamp(12px,2vw,28px)">
+      <button onClick="{{ prevImage }}" aria-label="Imagem anterior" style="background:rgba(22,25,29,.8);border:1px solid rgba(255,255,255,.14);color:#F5F5F5;width:48px;height:64px;border-radius:2px;cursor:pointer;flex:0 0 auto;font-size:18px" style-hover="border-color:#C2A47C">‹</button>
+      <div style="position:relative;overflow:hidden;flex:1;height:100%;background:repeating-linear-gradient(135deg,#14171A 0 18px,#191D22 18px 36px);border:1px solid rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;transform:scale({{ zoom }});transition:transform .3s ease">
+        <span role="img" aria-label="{{ car.alt }} — {{ currentImage }}" style="position:absolute;inset:0;background-image:{{ currentBg }};background-size:contain;background-repeat:no-repeat;background-position:center"></span>
+        <sc-if value="{{ currentNoSrc }}" hint-placeholder-val="{{ true }}"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;color:#6E7378;text-transform:uppercase;text-align:center;padding:0 20px">{{ currentImage }}</span></sc-if>
+      </div>
+      <button onClick="{{ nextImage }}" aria-label="Imagem seguinte" style="background:rgba(22,25,29,.8);border:1px solid rgba(255,255,255,.14);color:#F5F5F5;width:48px;height:64px;border-radius:2px;cursor:pointer;flex:0 0 auto;font-size:18px" style-hover="border-color:#C2A47C">›</button>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;padding:0 16px 18px">
+      <button onClick="{{ toggleZoom }}" style="background:transparent;border:1px solid rgba(255,255,255,.16);color:#A5A7AB;padding:11px 18px;border-radius:2px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase" style-hover="color:#F5F5F5;border-color:#F5F5F5">{{ zoomLabel }}</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ showCookies }}" hint-placeholder-val="{{ false }}">
+  <div role="region" aria-label="Consentimento de cookies" style="position:fixed;left:clamp(12px,2vw,24px);right:clamp(12px,2vw,24px);bottom:{{ cookieBottom }};z-index:95;background:rgba(17,19,22,.97);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.12);padding:clamp(18px,2.2vw,28px);max-width:620px;margin-left:auto;animation:avUp .35s ease both">
+    <p style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#C2A47C;margin:0 0 12px">Privacidade</p>
+    <p style="margin:0 0 18px;color:#C9CBCF;font-size:14px;line-height:1.65">Utilizamos cookies necessários ao funcionamento do site. Cookies de analítica e marketing só são ativados com o seu consentimento explícito.</p>
+    <div style="display:grid;gap:10px;margin-bottom:20px">
+      <label style="display:flex;align-items:center;gap:12px;color:#8E9195;font-size:13.5px">
+        <input type="checkbox" checked="{{ true }}" disabled="{{ true }}" style="width:18px;height:18px;accent-color:#C2A47C" />
+        <span>Necessários <span style="color:#5F6469">— sempre ativos</span></span>
+      </label>
+      <label style="display:flex;align-items:center;gap:12px;color:#C9CBCF;font-size:13.5px;cursor:pointer">
+        <input type="checkbox" name="analytics" checked="{{ cookiePrefs.analytics }}" onChange="{{ onCookiePref }}" style="width:18px;height:18px;accent-color:#C2A47C" />
+        <span>Analítica</span>
+      </label>
+      <label style="display:flex;align-items:center;gap:12px;color:#C9CBCF;font-size:13.5px;cursor:pointer">
+        <input type="checkbox" name="marketing" checked="{{ cookiePrefs.marketing }}" onChange="{{ onCookiePref }}" style="width:18px;height:18px;accent-color:#C2A47C" />
+        <span>Marketing</span>
+      </label>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:9px">
+      <button onClick="{{ acceptAllCookies }}" style="background:#F5F5F5;color:#0B0C0E;border:0;padding:14px 22px;border-radius:2px;cursor:pointer;font-size:13.5px;font-weight:700">Aceitar todos</button>
+      <button onClick="{{ saveCookies }}" style="background:transparent;color:#F5F5F5;border:1px solid rgba(255,255,255,.22);padding:14px 22px;border-radius:2px;cursor:pointer;font-size:13.5px;font-weight:600">Guardar seleção</button>
+      <button onClick="{{ rejectCookies }}" style="background:none;border:0;color:#8E9195;padding:14px 8px;cursor:pointer;font-size:13.5px" style-hover="color:#F5F5F5">Apenas necessários</button>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ introOpen }}" hint-placeholder-val="{{ true }}">
+  <div role="presentation" style="position:fixed;inset:0;z-index:200;background:#060708;overflow:hidden;animation:avIntroOut 3.9s cubic-bezier(.4,0,.2,1) both">
+    <div style="position:absolute;inset:0;background-image:url('assets/hero-panamera.png');background-size:cover;background-position:center 58%;animation:avIntroZoom 4.6s cubic-bezier(.22,.61,.36,1) both"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(6,7,8,.32) 0%,rgba(6,7,8,.78) 62%,#060708 100%);animation:avIntroVeil 1.2s ease both"></div>
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;padding:24px;text-align:center">
+      <img src="assets/logo-xr21.png" alt="XR21MOTORS" style="height:clamp(88px,13vw,132px);width:auto;display:block;animation:avIntroMark 1.5s cubic-bezier(.22,.61,.36,1) .15s both" />
+      <span style="display:block;width:clamp(90px,14vw,150px);height:1px;background:#C2A47C;transform-origin:center;animation:avIntroLine 1.5s cubic-bezier(.22,.61,.36,1) 1s both"></span>
+      <p style="margin:0;font-family:'JetBrains Mono',monospace;font-size:clamp(9.5px,1.1vw,11.5px);letter-spacing:.34em;text-transform:uppercase;color:#C9CBCF;animation:avIntroText 1.6s ease 1.35s both">Viaturas selecionadas · Portugal</p>
+    </div>
+    <button onClick="{{ skipIntro }}" style="position:absolute;top:clamp(16px,2.4vw,30px);right:clamp(16px,2.4vw,30px);background:rgba(9,10,12,.5);border:1px solid rgba(255,255,255,.2);color:#F5F5F5;padding:12px 20px;border-radius:2px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;min-height:44px;animation:avIntroText 1s ease .8s both" style-hover="border-color:#C2A47C;color:#C2A47C">Entrar</button>
+  </div>
+</sc-if>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;intro&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Abertura&quot;},&quot;demoMode&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Demonstração&quot;},&quot;showMonthly&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Comercial&quot;},&quot;cookieBanner&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;RGPD&quot;}}">
+class Component extends DCLogic {
+  cfg = {
+    name: 'XR21MOTORS',
+    phone: '+351 931 450 054',
+    whatsapp: '351931450054',
+    whatsappDisplay: '+351 931 450 054',
+    email: 'geral@xr21motors.pt',
+    address: 'Av. da Liberdade 000, Lisboa',
+    instagram: 'https://www.instagram.com/',
+    instagramHandle: '@xr21motors'
+  };
+
+  equipBase = {
+    Conforto: ['Ar condicionado automático', 'Bancos aquecidos', 'Estofos em pele', 'Volante multifunções'],
+    Tecnologia: ['Apple CarPlay', 'Android Auto', 'Navegação', 'Cruise Control'],
+    'Segurança': ['Câmara traseira', 'Sensores de estacionamento', 'Travagem de emergência', 'Alerta de faixa'],
+    Exterior: ['Faróis LED', 'Jantes em liga leve', 'Vidros escurecidos'],
+    Interior: ['Iluminação ambiente', 'Apoio de braço central', 'Carregamento por indução']
+  };
+
+  vehicles = [
+    { id: 1, slug: 'bmw-serie-1-120d-m-sport', brand: 'BMW', model: 'Série 1', version: '120d M Sport', year: 2011, mileage: 168000, fuel: 'Diesel', transmission: 'Manual', power: 177, price: 13900, monthly: 189, color: 'Preto Safira', location: 'Lisboa', featured: true, reserved: false, sold: false, isDemo: true, photos: ['assets/bmw-serie1-frente.png', 'assets/bmw-serie1-traseira.png', 'assets/bmw-serie1-interior.png'], photoLabels: ['Exterior — frente 3/4', 'Traseira 3/4', 'Posto de condução'], extras: ['Pack M Sport', 'Jantes em liga leve 18"'], description: 'Hatchback compacto com acabamento M Sport, caixa manual de seis velocidades e tração traseira. Viatura apresentada em bom estado geral, com manutenção documentada.' },
+    { id: 2, slug: 'porsche-panamera-4-e-hybrid', brand: 'Porsche', model: 'Panamera', version: '4 E-Hybrid', year: 2018, mileage: 96000, fuel: 'Híbrido', transmission: 'Automática', power: 462, price: 74900, monthly: 986, color: 'Preto Metalizado', location: 'Lisboa', featured: true, reserved: false, sold: false, isDemo: true, photos: ['assets/hero-panamera.png'], photoLabels: ['Exterior — frente 3/4'], extras: ['Suspensão pneumática', 'Jantes 21"'], description: 'Berlina de quatro portas com sistema híbrido plug-in, caixa PDK de oito velocidades e tração integral. Conjunto que combina conforto de viagem com desempenho elevado.' },
+    { id: 3, slug: 'mercedes-benz-glb-200d-2022', brand: 'Mercedes-Benz', model: 'GLB', version: 'GLB 200 d', year: 2022, mileage: 41000, fuel: 'Diesel', transmission: 'Automática', power: 150, price: 43500, monthly: 574, color: 'Branco Polar', location: 'Porto', featured: false, reserved: true, sold: false, isDemo: true, extras: ['7 lugares', 'MBUX com dois ecrãs'], description: 'Versão familiar com sete lugares, consumo contido e amplo espaço interior. Indicada para utilização mista, cidade e viagem.' },
+    { id: 4, slug: 'audi-a3-sportback-35-tfsi-2022', brand: 'Audi', model: 'A3', version: 'Sportback 35 TFSI S line', year: 2022, mileage: 29000, fuel: 'Gasolina', transmission: 'Automática', power: 150, price: 32900, monthly: 434, color: 'Cinza Daytona', location: 'Lisboa', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Virtual Cockpit', 'Faróis Matrix LED'], description: 'Compacto premium com pack S line, caixa S tronic e conjunto tecnológico completo. Quilometragem reduzida para o ano.' },
+    { id: 5, slug: 'bmw-serie-3-320d-touring-2021', brand: 'BMW', model: 'Série 3', version: '320d Touring Pack M', year: 2021, mileage: 74000, fuel: 'Diesel', transmission: 'Automática', power: 190, price: 38900, monthly: 512, color: 'Azul Portimão', location: 'Porto', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Pack M Sport', 'Porta da bagageira elétrica'], description: 'Familiar com bagageira ampla e comportamento dinâmico equilibrado. Manutenções realizadas em rede oficial.' },
+    { id: 6, slug: 'mercedes-benz-classe-a-180d-2021', brand: 'Mercedes-Benz', model: 'Classe A', version: 'A 180 d AMG Line', year: 2021, mileage: 63000, fuel: 'Diesel', transmission: 'Automática', power: 116, price: 29900, monthly: 394, color: 'Preto Cosmos', location: 'Lisboa', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Pack AMG Line', 'Bancos desportivos'], description: 'Compacto urbano com pack AMG Line e interior bem preservado. Boa opção para utilização diária com consumos reduzidos.' },
+    { id: 7, slug: 'tesla-model-3-long-range-2022', brand: 'Tesla', model: 'Model 3', version: 'Long Range AWD', year: 2022, mileage: 47000, fuel: 'Elétrico', transmission: 'Automática', power: 440, price: 34900, monthly: 459, color: 'Branco Pérola', location: 'Lisboa', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Tração integral', 'Teto de vidro panorâmico'], description: 'Versão de maior autonomia com tração integral. Viatura elétrica adequada a percursos longos e utilização diária.' },
+    { id: 8, slug: 'volvo-xc40-b4-2022', brand: 'Volvo', model: 'XC40', version: 'B4 Momentum', year: 2022, mileage: 38000, fuel: 'Híbrido', transmission: 'Automática', power: 197, price: 36900, monthly: 486, color: 'Branco Cristal', location: 'Lisboa', featured: true, reserved: false, sold: false, isDemo: true, photos: ['assets/showroom-xc40.png'], photoLabels: ['Exterior — frente'], extras: ['Sistema Harman Kardon', 'Pilot Assist'], description: 'SUV compacto híbrido suave, com forte pacote de segurança e interior sóbrio. Consumo equilibrado em utilização mista.' },
+    { id: 9, slug: 'mini-cooper-s-2021', brand: 'MINI', model: 'Cooper', version: 'Cooper S', year: 2021, mileage: 44000, fuel: 'Gasolina', transmission: 'Automática', power: 178, price: 27900, monthly: 368, color: 'Verde British', location: 'Lisboa', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Pack JCW', 'Teto contrastante'], description: 'Citadino com caráter desportivo e condução envolvente. Especificação bem escolhida e estado geral cuidado.' },
+    { id: 10, slug: 'range-rover-evoque-d165-2021', brand: 'Land Rover', model: 'Evoque', version: 'D165 R-Dynamic', year: 2021, mileage: 58000, fuel: 'Diesel', transmission: 'Automática', power: 163, price: 41900, monthly: 552, color: 'Preto Santorini', location: 'Lisboa', featured: false, reserved: false, sold: true, isDemo: true, extras: ['Pack R-Dynamic', 'Câmaras 360°'], description: 'SUV com presença marcante e interior refinado. Viatura com histórico documentado e revisões em dia.' },
+    { id: 11, slug: 'bmw-x1-sdrive18d-2022', brand: 'BMW', model: 'X1', version: 'sDrive18d', year: 2022, mileage: 35000, fuel: 'Diesel', transmission: 'Automática', power: 150, price: 39900, monthly: 526, color: 'Cinza Alpino', location: 'Porto', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Bagageira elétrica', 'Navegação Plus'], description: 'SUV compacto prático e eficiente, com boa modularidade interior. Adequado a famílias e utilização profissional.' },
+    { id: 13, slug: 'mercedes-benz-e220d-amg-line', brand: 'Mercedes-Benz', model: 'Classe E', version: 'E 220 d AMG Line Aut.', year: 2019, mileage: 92000, fuel: 'Diesel', transmission: 'Automática', power: 194, price: 36900, monthly: 486, color: 'Preto Obsidiana', location: 'Lisboa', featured: true, reserved: false, sold: false, isDemo: true, photos: ['assets/mercedes-e220d.png'], photoLabels: ['Exterior — frente'], extras: ['Pack AMG Line', 'Widescreen Cockpit'], description: 'Classe E com pack AMG Line, caixa automática 9G-Tronic e motor diesel de 194 cv. Interior em pele com dois ecrãs digitais e conjunto de assistências à condução.' },
+    { id: 12, slug: 'mercedes-benz-cla-200-2022', brand: 'Mercedes-Benz', model: 'CLA', version: 'CLA 200 AMG Line', year: 2022, mileage: 31000, fuel: 'Gasolina', transmission: 'Automática', power: 163, price: 44900, monthly: 592, color: 'Cinza Montanha', location: 'Lisboa', featured: false, reserved: false, sold: false, isDemo: true, extras: ['Pack AMG Line', 'Bancos em pele Artico'], description: 'Coupé de quatro portas com linha desportiva e interior tecnológico. Quilometragem reduzida e estado muito cuidado.' }
+  ];
+
+  placeholderLabels = ['Exterior — frente 3/4', 'Perfil lateral', 'Traseira 3/4', 'Posto de condução', 'Consola central', 'Bancos traseiros', 'Jantes', 'Bagageira'];
+
+  galleryOf(v) {
+    if (v.photos && v.photos.length) {
+      return v.photos.map((src, i) => ({ src, label: (v.photoLabels && v.photoLabels[i]) || 'Fotografia ' + (i + 1), hasSrc: true, noSrc: false }));
+    }
+    return this.placeholderLabels.map((label) => ({ src: '', label, hasSrc: false, noSrc: true }));
+  }
+
+  reviews = [
+    { stars: '★★★★★', text: 'Processo simples e sem pressão. Explicaram-me todas as opções de financiamento antes de decidir.', author: 'Ricardo M.', city: 'Lisboa', demoReview: true },
+    { stars: '★★★★★', text: 'A retoma foi avaliada de forma transparente e o valor apresentado foi justo.', author: 'Sofia A.', city: 'Setúbal', demoReview: true },
+    { stars: '★★★★★', text: 'Viatura exatamente como descrita no site. Entrega combinada e cumprida à hora.', author: 'Tiago F.', city: 'Braga', demoReview: true }
+  ];
+
+  emptyFinance = { name: '', phone: '', email: '', vehicle: '', down: '', term: '60', consent: false };
+  emptyTrade = { brand: '', model: '', year: '', km: '', plate: '', name: '', phone: '', consent: false };
+
+  state = {
+    view: 'home', slug: null, vw: 1440, menu: false, loading: false,
+    filters: { brand: 'Todas as marcas', model: '', maxPrice: 120000, minYear: 'Qualquer ano', fuel: 'Todos', gear: 'Todas' },
+    sort: 'recentes', gal: 0, lightbox: false, zoom: 1,
+    finance: { ...this.emptyFinance }, financeErr: {}, financeSent: false,
+    trade: { ...this.emptyTrade }, tradeErr: {}, tradeSent: false,
+    cookieChoice: 'pending', cookiePrefs: { analytics: false, marketing: false },
+    legal: 'privacidade',
+    intro: true
+  };
+
+  componentDidMount() {
+    this.startIntro();
+    this.onResize = () => this.setState({ vw: window.innerWidth });
+    this.onResize();
+    window.addEventListener('resize', this.onResize);
+    this.onKey = (e) => {
+      if (!this.state.lightbox) return;
+      if (e.key === 'Escape') this.setState({ lightbox: false, zoom: 1 });
+      if (e.key === 'ArrowRight') this.step(1);
+      if (e.key === 'ArrowLeft') this.step(-1);
+    };
+    window.addEventListener('keydown', this.onKey);
+    try {
+      const saved = window.localStorage.getItem('av_cookie_consent');
+      if (saved) {
+        const p = JSON.parse(saved);
+        this.setState({ cookieChoice: 'set', cookiePrefs: { analytics: !!p.analytics, marketing: !!p.marketing } });
+      }
+    } catch (e) { /* consentimento indisponível */ }
+  }
+
+  startIntro() {
+    let seen = false, reduced = false;
+    try { seen = window.sessionStorage.getItem('av_intro_seen') === '1'; } catch (e) { /* ignora */ }
+    try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { /* ignora */ }
+    if (seen || reduced) { this.setState({ intro: false }); return; }
+    document.body.style.overflow = 'hidden';
+    this.introTimer = setTimeout(() => this.endIntro(), 3900);
+  }
+
+  endIntro() {
+    clearTimeout(this.introTimer);
+    document.body.style.overflow = '';
+    try { window.sessionStorage.setItem('av_intro_seen', '1'); } catch (e) { /* ignora */ }
+    this.setState({ intro: false });
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.introTimer);
+    document.body.style.overflow = '';
+    window.removeEventListener('resize', this.onResize);
+    window.removeEventListener('keydown', this.onKey);
+  }
+
+  top() { try { window.scrollTo({ top: 0, behavior: 'instant' }); } catch (e) { window.scrollTo(0, 0); } }
+
+  nav(view, extra) {
+    this.setState({ view, menu: false, ...(extra || {}) });
+    this.top();
+  }
+
+  jump(id) {
+    const go = () => {
+      const el = document.getElementById(id);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 74, behavior: 'smooth' });
+    };
+    if (this.state.view !== 'home') { this.setState({ view: 'home', menu: false }); setTimeout(go, 90); }
+    else { this.setState({ menu: false }); setTimeout(go, 30); }
+  }
+
+  step(d) {
+    const n = this._galLen || 1;
+    this.setState((s) => ({ gal: (s.gal + d + n) % n, zoom: 1 }));
+  }
+
+  money(n) { return n.toLocaleString('pt-PT').replace(/\u00A0/g, ' ') + ' €'; }
+  km(n) { return n.toLocaleString('pt-PT').replace(/\u00A0/g, '.') + ' km'; }
+
+  enrich(v) {
+    return {
+      ...v,
+      title: v.brand + ' ' + v.model,
+      priceFmt: this.money(v.price),
+      monthlyFmt: '€' + v.monthly,
+      kmFmt: this.km(v.mileage),
+      powerFmt: v.power + ' cv',
+      ref: 'XR21-' + String(v.id).padStart(4, '0'),
+      imgLabel: v.brand + ' ' + v.model + ' — foto por adicionar',
+      photos: v.photos || [],
+      hasPhoto: !!(v.photos && v.photos.length),
+      noPhoto: !(v.photos && v.photos.length),
+      photo: (v.photos && v.photos[0]) || '',
+      bg: v.photos && v.photos[0] ? 'url("' + v.photos[0] + '")' : 'none',
+      alt: v.brand + ' ' + v.model + ' ' + v.version + ' — fotografia da viatura no stand XR21MOTORS',
+      specLine: v.year + ' · ' + this.km(v.mileage) + ' · ' + v.fuel,
+      badge: v.reserved ? 'Reservado' : (v.sold ? 'Vendido' : (v.featured ? 'Destaque' : '')),
+      open: () => this.nav('viatura', { slug: v.slug, gal: 0, lightbox: false })
+    };
+  }
+
+  filtered() {
+    const f = this.state.filters;
+    let list = this.vehicles.filter((v) => {
+      if (f.brand !== 'Todas as marcas' && v.brand !== f.brand) return false;
+      if (f.model.trim() && !(v.model + ' ' + v.version).toLowerCase().includes(f.model.trim().toLowerCase())) return false;
+      if (v.price > Number(f.maxPrice)) return false;
+      if (f.minYear !== 'Qualquer ano' && v.year < Number(f.minYear)) return false;
+      if (f.fuel !== 'Todos' && v.fuel !== f.fuel) return false;
+      if (f.gear !== 'Todas' && v.transmission !== f.gear) return false;
+      return true;
+    });
+    const s = this.state.sort;
+    if (s === 'preco-asc') list = list.slice().sort((a, b) => a.price - b.price);
+    else if (s === 'preco-desc') list = list.slice().sort((a, b) => b.price - a.price);
+    else if (s === 'km') list = list.slice().sort((a, b) => a.mileage - b.mileage);
+    else list = list.slice().sort((a, b) => b.year - a.year);
+    return list;
+  }
+
+  clean(s) { return String(s).replace(/[<>]/g, '').slice(0, 200).trim(); }
+  validPhone(s) { return /^[+0-9 ()-]{9,20}$/.test(s.trim()); }
+  validEmail(s) { return /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(s.trim()); }
+
+  wa(text) {
+    return 'https://wa.me/' + this.cfg.whatsapp + '?text=' + encodeURIComponent(text);
+  }
+
+  renderVals() {
+    const st = this.state;
+    const desktop = st.vw >= 1024;
+    const car = st.slug ? this.enrich(this.vehicles.find((v) => v.slug === st.slug) || this.vehicles[0]) : this.enrich(this.vehicles[0]);
+    const results = this.filtered().map((v) => this.enrich(v));
+    const gallery = this.galleryOf(car);
+    this._galLen = gallery.length;
+    const gi = Math.min(st.gal, gallery.length - 1);
+    const shot = gallery[gi];
+    const showMonthly = this.props.showMonthly !== false;
+    const demoMode = this.props.demoMode !== false;
+    const isDetail = st.view === 'viatura';
+    const legalMap = {
+      privacidade: {
+        title: 'Política de Privacidade',
+        blocks: [
+          { h: 'Responsável pelo tratamento', p: 'A XR21MOTORS trata os dados pessoais recolhidos através deste website com a finalidade exclusiva de responder a pedidos de informação, simulações de financiamento e propostas de retoma.' },
+          { h: 'Dados recolhidos', p: 'São recolhidos apenas os dados fornecidos voluntariamente nos formulários: nome, telemóvel, email e dados da viatura de interesse ou de retoma. Não são recolhidos dados sensíveis.' },
+          { h: 'Fundamento e conservação', p: 'O tratamento baseia-se no consentimento explícito do titular. Os dados são conservados apenas durante o período necessário à resposta ao pedido e ao cumprimento de obrigações legais aplicáveis.' },
+          { h: 'Direitos do titular', p: 'Nos termos do RGPD, pode solicitar o acesso, retificação, apagamento, limitação ou portabilidade dos seus dados, bem como retirar o consentimento em qualquer momento, através dos contactos indicados neste website.' },
+          { h: 'Partilha com terceiros', p: 'Os dados de pedidos de financiamento podem ser partilhados com entidades financeiras parceiras, exclusivamente para efeitos de análise do pedido, sempre com o consentimento prévio do titular.' }
+        ]
+      },
+      cookies: {
+        title: 'Política de Cookies',
+        blocks: [
+          { h: 'O que são cookies', p: 'Cookies são pequenos ficheiros guardados no seu dispositivo que permitem o funcionamento do website e, quando autorizados, a análise de utilização e ações de marketing.' },
+          { h: 'Cookies necessários', p: 'Garantem funcionalidades essenciais, como navegação, segurança e memorização das suas preferências de consentimento. Não requerem consentimento.' },
+          { h: 'Cookies de analítica', p: 'Permitem compreender de forma agregada como o website é utilizado, para melhorar conteúdos e desempenho. São ativados apenas após consentimento explícito.' },
+          { h: 'Cookies de marketing', p: 'Permitem medir a eficácia de campanhas e apresentar comunicação relevante. São ativados apenas após consentimento explícito.' },
+          { h: 'Gestão do consentimento', p: 'Pode alterar ou retirar o consentimento em qualquer momento, limpando os dados do site no seu navegador ou contactando-nos diretamente.' }
+        ]
+      },
+      termos: {
+        title: 'Termos e Condições',
+        blocks: [
+          { h: 'Âmbito', p: 'Este website destina-se à apresentação de viaturas e serviços do stand, bem como ao encaminhamento de pedidos de contacto. Não permite a celebração de contratos de compra e venda online.' },
+          { h: 'Informação apresentada', p: 'As características, preços e disponibilidade das viaturas apresentadas têm caráter informativo e podem ser alterados sem aviso prévio. Não constituem oferta contratual.' },
+          { h: 'Financiamento', p: 'Todas as simulações apresentadas são indicativas e dependem de análise e aprovação pelas entidades financeiras parceiras. Nenhuma aprovação é concedida através deste website.' },
+          { h: 'Conceito demonstrativo', p: 'Esta versão do website é um conceito demonstrativo desenvolvido pela KRONUS Soluções Digitais. Os dados de viaturas e depoimentos apresentados são exemplificativos.' }
+        ]
+      }
+    };
+    const legal = legalMap[st.legal] || legalMap.privacidade;
+
+    return {
+      cfg: this.cfg,
+      demoMode, showMonthly,
+      introOpen: this.props.intro !== false && st.intro,
+      skipIntro: () => this.endIntro(),
+      isDesktop: desktop,
+      isMobile: !desktop,
+      menu: st.menu,
+      isHome: st.view === 'home',
+      isCatalog: st.view === 'catalogo',
+      isDetail,
+      isLegal: st.view === 'legal',
+      legalTitle: legal.title,
+      legalBlocks: legal.blocks,
+
+      goHome: () => this.nav('home'),
+      goCatalog: () => this.nav('catalogo'),
+      goFinance: () => this.jump('financiamento'),
+      goTrade: () => this.jump('retomas'),
+      goAbout: () => this.jump('sobre'),
+      goContact: () => this.jump('contactos'),
+      goTerms: () => this.nav('legal', { legal: 'termos' }),
+      goPrivacy: () => this.nav('legal', { legal: 'privacidade' }),
+      goCookies: () => this.nav('legal', { legal: 'cookies' }),
+      toggleMenu: () => this.setState((s) => ({ menu: !s.menu })),
+      goFinanceWithCar: () => {
+        this.setState((s) => ({ finance: { ...s.finance, vehicle: car.title + ' ' + car.version }, financeSent: false }));
+        this.jump('financiamento');
+      },
+
+      brands: ['Todas as marcas'].concat(Array.from(new Set(this.vehicles.map((v) => v.brand))).sort()),
+      years: ['Qualquer ano', '2022', '2021', '2020'],
+      fuels: ['Todos', 'Gasolina', 'Diesel', 'Híbrido', 'Elétrico'],
+      gears: ['Todas', 'Automática', 'Manual'],
+      vehicleNames: this.vehicles.map((v) => v.brand + ' ' + v.model + ' ' + v.version),
+      filters: st.filters,
+      sort: st.sort,
+      maxPriceLabel: this.money(Number(st.filters.maxPrice)),
+      onFilter: (e) => {
+        const { name, value } = e.target;
+        this.setState((s) => ({ filters: { ...s.filters, [name]: value } }));
+      },
+      onSort: (e) => this.setState({ sort: e.target.value }),
+      clearFilters: () => this.setState({ filters: { brand: 'Todas as marcas', model: '', maxPrice: 120000, minYear: 'Qualquer ano', fuel: 'Todos', gear: 'Todas' } }),
+      submitSearch: (e) => {
+        e.preventDefault();
+        this.setState({ view: 'catalogo', loading: true });
+        this.top();
+        setTimeout(() => this.setState({ loading: false }), 650);
+      },
+
+      featured: this.vehicles.filter((v) => v.featured).slice(0, 4).map((v) => this.enrich(v)),
+      preview: this.vehicles.slice().sort((a, b) => ((b.photos ? 1 : 0) - (a.photos ? 1 : 0))).slice(0, 4).map((v) => this.enrich(v)),
+      results,
+      hasResults: !st.loading && results.length > 0,
+      isEmpty: !st.loading && results.length === 0,
+      loading: st.loading,
+      skeletons: [1, 2, 3, 4, 5, 6],
+      totalLabel: this.vehicles.length + ' viaturas disponíveis',
+      resultLabel: results.length === 1 ? '1 viatura disponível' : results.length + ' viaturas disponíveis',
+
+      car,
+      detailCols: desktop ? 'minmax(0,1.65fr) minmax(min(320px,100%),1fr)' : '1fr',
+      asideSticky: desktop ? 'sticky' : 'static',
+      showMobileBar: isDetail && !desktop,
+      showWaFloat: !isDetail,
+      currentImage: shot.label,
+      currentSrc: shot.src,
+      currentBg: shot.src ? 'url("' + shot.src + '")' : 'none',
+      currentHasSrc: shot.hasSrc,
+      currentNoSrc: shot.noSrc,
+      galCounter: (gi + 1) + ' / ' + gallery.length,
+      thumbs: gallery.map((g, i) => ({
+        label: 'Ver imagem ' + (i + 1) + ' — ' + g.label,
+        short: g.label.split('—').pop().trim(),
+        src: g.src,
+        bg: g.src ? 'url("' + g.src + '")' : 'none',
+        hasSrc: g.hasSrc,
+        noSrc: g.noSrc,
+        border: i === gi ? '#C2A47C' : 'rgba(255,255,255,.08)',
+        opacity: i === gi ? 1 : 0.62,
+        select: () => this.setState({ gal: i, zoom: 1 })
+      })),
+      specs: [
+        { k: 'Ano', v: car.year }, { k: 'Quilómetros', v: car.kmFmt }, { k: 'Combustível', v: car.fuel },
+        { k: 'Potência', v: car.powerFmt }, { k: 'Caixa', v: car.transmission }, { k: 'Cor', v: car.color },
+        { k: 'Localização', v: car.location }, { k: 'Referência', v: car.ref }
+      ],
+      equipGroups: Object.keys(this.equipBase).map((k) => ({
+        title: k,
+        items: k === 'Tecnologia' ? this.equipBase[k].concat(car.extras || []) : this.equipBase[k]
+      })),
+      similar: this.vehicles.filter((v) => v.slug !== car.slug && (v.brand === car.brand || Math.abs(v.price - car.price) < 8000)).slice(0, 3).map((v) => this.enrich(v)),
+
+      lightboxOpen: st.lightbox,
+      zoom: st.zoom,
+      zoomLabel: st.zoom > 1 ? 'Reduzir' : 'Ampliar',
+      openLightbox: () => this.setState({ lightbox: true }),
+      closeLightbox: () => this.setState({ lightbox: false, zoom: 1 }),
+      nextImage: () => this.step(1),
+      prevImage: () => this.step(-1),
+      toggleZoom: () => this.setState((s) => ({ zoom: s.zoom > 1 ? 1 : 1.35 })),
+
+      telLink: 'tel:' + this.cfg.phone.replace(/\s/g, ''),
+      mailLink: 'mailto:' + this.cfg.email,
+      mapsLink: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(this.cfg.address),
+      waLinkGeneral: this.wa('Olá! Gostaria de receber mais informações sobre as viaturas disponíveis no vosso website.'),
+      waLinkCar: this.wa('Olá! Gostaria de receber mais informações sobre o ' + car.title + ' ' + car.version + ' que vi no vosso website.'),
+      waLinkContext: isDetail ? this.wa('Olá! Gostaria de receber mais informações sobre o ' + car.title + ' ' + car.version + ' que vi no vosso website.') : this.wa('Olá! Gostaria de receber mais informações sobre as viaturas disponíveis no vosso website.'),
+
+      finance: st.finance,
+      financeErr: st.financeErr,
+      financeSent: st.financeSent,
+      financeOpen: !st.financeSent,
+      onFinance: (e) => {
+        const { name, value } = e.target;
+        this.setState((s) => ({ finance: { ...s.finance, [name]: value } }));
+      },
+      onFinanceConsent: (e) => {
+        const c = e.target.checked;
+        this.setState((s) => ({ finance: { ...s.finance, consent: c } }));
+      },
+      resetFinance: () => this.setState({ finance: { ...this.emptyFinance }, financeErr: {}, financeSent: false }),
+      submitFinance: (e) => {
+        e.preventDefault();
+        const f = this.state.finance;
+        const err = {};
+        if (this.clean(f.name).length < 2) err.name = 'Indique o seu nome.';
+        if (!this.validPhone(f.phone)) err.phone = 'Indique um telemóvel válido.';
+        if (!this.validEmail(f.email)) err.email = 'Indique um email válido.';
+        if (!f.consent) err.consent = 'É necessário aceitar o contacto para prosseguirmos.';
+        if (Object.keys(err).length) { this.setState({ financeErr: err }); return; }
+        // DEMO_MODE: nenhum dado é enviado; a submissão é apenas simulada localmente.
+        this.setState({ financeErr: {}, financeSent: true });
+      },
+
+      trade: st.trade,
+      tradeErr: st.tradeErr,
+      tradeSent: st.tradeSent,
+      tradeOpen: !st.tradeSent,
+      onTrade: (e) => {
+        const { name, value } = e.target;
+        this.setState((s) => ({ trade: { ...s.trade, [name]: value } }));
+      },
+      onTradeConsent: (e) => {
+        const c = e.target.checked;
+        this.setState((s) => ({ trade: { ...s.trade, consent: c } }));
+      },
+      resetTrade: () => this.setState({ trade: { ...this.emptyTrade }, tradeErr: {}, tradeSent: false }),
+      submitTrade: (e) => {
+        e.preventDefault();
+        const t = this.state.trade;
+        const err = {};
+        if (this.clean(t.brand).length < 2) err.brand = 'Indique a marca.';
+        if (this.clean(t.model).length < 1) err.model = 'Indique o modelo.';
+        if (!/^(19|20)\d{2}$/.test(t.year.trim())) err.year = 'Ano inválido.';
+        if (!/^\d{1,7}$/.test(t.km.replace(/[.\s]/g, ''))) err.km = 'Quilometragem inválida.';
+        if (this.clean(t.name).length < 2) err.name = 'Indique o seu nome.';
+        if (!this.validPhone(t.phone)) err.phone = 'Indique um telemóvel válido.';
+        if (!t.consent) err.consent = 'É necessário aceitar o contacto para prosseguirmos.';
+        if (Object.keys(err).length) { this.setState({ tradeErr: err }); return; }
+        this.setState({ tradeErr: {}, tradeSent: true });
+      },
+
+      reviews: this.reviews,
+      showCookies: this.props.cookieBanner !== false && st.cookieChoice === 'pending',
+      cookieBottom: (isDetail && !desktop) ? 'calc(96px + env(safe-area-inset-bottom))' : 'calc(clamp(12px,2vw,24px) + env(safe-area-inset-bottom))',
+      cookiePrefs: st.cookiePrefs,
+      onCookiePref: (e) => {
+        const { name, checked } = e.target;
+        this.setState((s) => ({ cookiePrefs: { ...s.cookiePrefs, [name]: checked } }));
+      },
+      acceptAllCookies: () => this.persistCookies({ analytics: true, marketing: true }),
+      saveCookies: () => this.persistCookies(this.state.cookiePrefs),
+      rejectCookies: () => this.persistCookies({ analytics: false, marketing: false })
+    };
+  }
+
+  persistCookies(prefs) {
+    try { window.localStorage.setItem('av_cookie_consent', JSON.stringify(prefs)); } catch (e) { /* ignora */ }
+    this.setState({ cookieChoice: 'set', cookiePrefs: prefs });
+  }
+}
+
+</script>
+</body>
+</html>
